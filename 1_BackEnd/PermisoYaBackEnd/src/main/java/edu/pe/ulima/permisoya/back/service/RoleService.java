@@ -1,15 +1,13 @@
 package edu.pe.ulima.permisoya.back.service;
 
 import edu.pe.ulima.permisoya.back.dao.RoleDAO;
-import edu.pe.ulima.permisoya.back.model.MenuItem;
-import java.util.List;
+import edu.pe.ulima.permisoya.back.model.Role;
 import java.util.Objects;
 
 /**
- * Servicio para gestionar la obtencion de MenuItem asociados a un Role.
- * <p>
+ * Servicio para gestionar la obtencion de menuItems asociados a un role.
+ *
  * Esta clase delega la consulta de menus al {@link RoleDAO}.
- * </p>
  *
  * @author Henry Wong <hwong@ulima.edu.pe>
  */
@@ -19,7 +17,8 @@ public class RoleService {
     private final RoleDAO roleDAO;
 
     /**
-     * Construye el servicio usando el DAO por defecto.
+     * Constructor por defecto que inicializa el servicio con el DAO
+     * predeterminado.
      */
     public RoleService() {
         this(new RoleDAO());
@@ -35,13 +34,14 @@ public class RoleService {
     }
 
     /**
-     * Lista los MenuItem asociados al role con el nombre especificado.
+     * Obtiene un {@code Role} completo para el nombre especificado,
+     * con su lista de {@code RoleMenu} que representa los accesos.
      *
      * @param roleNombre nombre del role a filtrar, no puede ser null
-     * @return lista de MenuItem asignados a ese role; puede estar vacia
+     * @return objeto {@code Role} con sus roleMenus; puede no tener menus
      * @throws Exception si ocurre un error durante la consulta
      */
-    public List<MenuItem> listarMenusPorRole(String roleNombre) throws Exception {
+    public Role listarMenusPorRole(String roleNombre) throws Exception {
         Objects.requireNonNull(roleNombre, "roleNombre no puede ser null");
         return roleDAO.listarMenusPorRole(roleNombre);
     }

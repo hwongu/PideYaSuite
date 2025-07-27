@@ -16,11 +16,12 @@ import edu.pe.ulima.frontend.pideya.desktop.internalframe.FrmPedido;
 import edu.pe.ulima.frontend.pideya.desktop.internalframe.FrmPedidoCliente;
 import edu.pe.ulima.frontend.pideya.desktop.internalframe.FrmProducto;
 import edu.pe.ulima.permisoya.back.model.MenuItem;
+import edu.pe.ulima.permisoya.back.model.Role;
+import edu.pe.ulima.permisoya.back.model.RoleMenu;
 import edu.pe.ulima.permisoya.back.service.RoleService;
 import edu.pe.ulima.pideya.back.model.Usuario;
 import java.awt.Dimension;
 import java.beans.PropertyVetoException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
@@ -86,9 +87,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     public void aplicarPermisosMenu() {
         try {
-            List<MenuItem> permisos = roleService.listarMenusPorRole(usuarioInicioSesion.getTipoUsuario().name());
+            // 1) Traer el Role completo con sus RoleMenu
+            Role role = roleService.listarMenusPorRole(usuarioInicioSesion.getTipoUsuario().name());
 
-            // 1) Ocultar todo al inicio
+            // 2) Ocultar todo al inicio
             jmGestionarAlmacen.setVisible(false);
             jmiMantCategoria.setVisible(false);
             jmiMantProducto.setVisible(false);
@@ -110,8 +112,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
             jfileAyuda.setVisible(false);
             jmiAcercaDe.setVisible(false);
 
-            // 2) Mostrar sólo los que traiga el servicio
-            for (MenuItem perm : permisos) {
+            // 3) Mostrar solo los que el Role tiene asignados
+            for (RoleMenu rm : role.getRoleMenus()) {
+                MenuItem perm = rm.getMenuItem();
                 switch (perm.getNombre()) {
                     case "jmiMantCategoria" -> {
                         jmGestionarAlmacen.setVisible(true);
@@ -156,9 +159,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     case "jmiAcercaDe" -> {
                         jfileAyuda.setVisible(true);
                         jmiAcercaDe.setVisible(true);
-                        // …otros permisos…
                     }
-                    // …otros permisos…
+                    default -> {
+                        // Otros permisos no mapeados
+                    }
                 }
             }
         } catch (Exception ex) {

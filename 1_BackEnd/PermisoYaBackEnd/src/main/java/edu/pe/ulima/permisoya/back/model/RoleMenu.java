@@ -1,16 +1,17 @@
 package edu.pe.ulima.permisoya.back.model;
 
-import java.util.Objects;
-
 /**
- * Entidad RoleMenu que representa la asignacion de un MenuItem a un Role.
+ * Representa la asignacion de un MenuItem a un Role.
+ *
+ * Cada {@code RoleMenu} vincula un rol con un elemento de menu,
+ * indicando que dicho rol tiene acceso a ese item.
  *
  * @author Henry Wong <hwong@ulima.edu.pe>
  */
 public class RoleMenu {
 
-    private Integer idRole;
-    private Integer idMenuItem;
+    private Role role;
+    private MenuItem menuItem;
 
     /**
      * Constructor vacio.
@@ -19,68 +20,49 @@ public class RoleMenu {
     }
 
     /**
-     * Construye un RoleMenu completo.
+     * Construye una asociacion entre un rol y un item de menu.
      *
-     * @param idRole     clave primaria del rol
-     * @param idMenuItem clave primaria del menu item
+     * @param role     rol que recibe el permiso
+     * @param menuItem item de menu al que se da acceso
      */
-    public RoleMenu(Integer idRole, Integer idMenuItem) {
-        this.idRole = idRole;
-        this.idMenuItem = idMenuItem;
+    public RoleMenu(Role role, MenuItem menuItem) {
+        this.role     = role;
+        this.menuItem = menuItem;
     }
 
     /**
-     * Obtiene el id del Role.
+     * Devuelve el rol asociado a esta relacion.
      *
-     * @return idRole
+     * @return objeto Role que representa el rol
      */
-    public Integer getIdRole() {
-        return idRole;
+    public Role getRole() {
+        return role;
     }
 
     /**
-     * Asigna el id del Role.
+     * Asigna el rol asociado a esta relacion.
      *
-     * @param idRole valor a asignar
+     * @param role nuevo rol a asociar
      */
-    public void setIdRole(Integer idRole) {
-        this.idRole = idRole;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     /**
-     * Obtiene el id del MenuItem.
+     * Devuelve el item de menu asociado a esta relacion.
      *
-     * @return idMenuItem
+     * @return objeto MenuItem que representa el item de menu
      */
-    public Integer getIdMenuItem() {
-        return idMenuItem;
+    public MenuItem getMenuItem() {
+        return menuItem;
     }
 
     /**
-     * Asigna el id del MenuItem.
+     * Asigna el item de menu asociado a esta relacion.
      *
-     * @param idMenuItem valor a asignar
+     * @param menuItem nuevo item de menu a asociar
      */
-    public void setIdMenuItem(Integer idMenuItem) {
-        this.idMenuItem = idMenuItem;
-    }
-
-    @Override
-    public String toString() {
-        return "RoleMenu{roleId=" + idRole + ", menuItemId=" + idMenuItem + '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof RoleMenu)) return false;
-        RoleMenu that = (RoleMenu) o;
-        return Objects.equals(idRole, that.idRole)
-            && Objects.equals(idMenuItem, that.idMenuItem);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idRole, idMenuItem);
+    public void setMenuItem(MenuItem menuItem) {
+        this.menuItem = menuItem;
     }
 }

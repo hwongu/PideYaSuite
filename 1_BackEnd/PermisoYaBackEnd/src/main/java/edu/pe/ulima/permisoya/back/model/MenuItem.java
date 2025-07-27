@@ -1,127 +1,156 @@
 package edu.pe.ulima.permisoya.back.model;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Entidad MenuItem que representa un elemento de menu, con posible relacion padre-hijo.
+ * Representa un elemento de menu dentro de la aplicacion,
+ * con soporte para jerarquia padre-hijo y asociacion a roles.
  *
-  * @author Henry Wong <hwong@ulima.edu.pe>
+ * Cada {@code MenuItem} puede contener multiples hijos y conocer su elemento
+ * padre, permitiendo construir un arbol de navegacion.
+ * Ademas, mantiene una lista de relaciones {@code RoleMenu} para saber
+ * que roles tienen acceso a este item.
+ *
+ * @author Henry Wong <hwong@ulima.edu.pe>
  */
 public class MenuItem {
 
+
     private Integer idMenuItem;
     private String nombre;
-    private Integer parentId;
     private Integer orden;
+    private MenuItem parent;
+    private List<MenuItem> children = new ArrayList<>();
+    private List<RoleMenu> roleMenus = new ArrayList<>();
 
-    /**
-     * Constructor vacio.
+    /** 
+     * Constructor vacio. 
      */
     public MenuItem() {
     }
 
     /**
-     * Construye un MenuItem completo.
+     * Construye un item de menu con valores iniciales.
      *
      * @param idMenuItem clave primaria del menu
-     * @param nombre     texto a mostrar en el menu
-     * @param parentId   id del menu padre, null si es raiz
-     * @param orden      orden de presentacion
+     * @param nombre     etiqueta visible
+     * @param orden      posicion relativa en la lista
+     * @param parent     elemento padre (null si es un item raiz)
      */
-    public MenuItem(Integer idMenuItem, String nombre, Integer parentId, Integer orden) {
+    public MenuItem(Integer idMenuItem, String nombre, Integer orden, MenuItem parent) {
         this.idMenuItem = idMenuItem;
-        this.nombre = nombre;
-        this.parentId = parentId;
-        this.orden = orden;
+        this.nombre     = nombre;
+        this.orden      = orden;
+        this.parent     = parent;
     }
 
     /**
-     * Obtiene el id del MenuItem.
+     * Devuelve el identificador unico del item de menu.
      *
-     * @return idMenuItem
+     * @return id unico del item de menu
      */
     public Integer getIdMenuItem() {
         return idMenuItem;
     }
 
     /**
-     * Asigna el id del MenuItem.
+     * Asigna el identificador unico del item de menu.
      *
-     * @param idMenuItem valor a asignar
+     * @param idMenuItem identificador unico a asignar
      */
     public void setIdMenuItem(Integer idMenuItem) {
         this.idMenuItem = idMenuItem;
     }
 
     /**
-     * Obtiene el nombre del MenuItem.
+     * Devuelve la etiqueta mostrada en la interfaz.
      *
-     * @return nombre
+     * @return etiqueta visible del item
      */
     public String getNombre() {
         return nombre;
     }
 
     /**
-     * Asigna el nombre del MenuItem.
+     * Establece la etiqueta mostrada en la interfaz.
      *
-     * @param nombre valor a asignar
+     * @param nombre nueva etiqueta del item
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
     /**
-     * Obtiene el id del MenuItem padre.
+     * Devuelve el orden de presentacion dentro de su nivel.
      *
-     * @return parentId o null si no tiene padre
-     */
-    public Integer getParentId() {
-        return parentId;
-    }
-
-    /**
-     * Asigna el id del MenuItem padre.
-     *
-     * @param parentId valor a asignar
-     */
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
-    }
-
-    /**
-     * Obtiene la propiedad orden.
-     *
-     * @return orden
+     * @return posicion relativa de este item
      */
     public Integer getOrden() {
         return orden;
     }
 
     /**
-     * Asigna la propiedad orden.
+     * Define el orden de presentacion dentro de su nivel.
      *
-     * @param orden valor a asignar
+     * @param orden nueva posicion relativa
      */
     public void setOrden(Integer orden) {
         this.orden = orden;
     }
 
-    @Override
-    public String toString() {
-        return nombre;
+    /**
+     * Devuelve el elemento padre de este item.
+     *
+     * @return elemento padre, o null si es raiz
+     */
+    public MenuItem getParent() {
+        return parent;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof MenuItem)) return false;
-        MenuItem that = (MenuItem) o;
-        return Objects.equals(idMenuItem, that.idMenuItem);
+    /**
+     * Asigna el elemento padre de este item.
+     *
+     * @param parent elemento padre a asignar
+     */
+    public void setParent(MenuItem parent) {
+        this.parent = parent;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(idMenuItem);
+    /**
+     * Devuelve la lista de items hijos.
+     *
+     * @return lista de items hijos
+     */
+    public List<MenuItem> getChildren() {
+        return children;
+    }
+
+    /**
+     * Anade un item hijo, configurando automaticamente su referencia padre.
+     *
+     * @param child elemento hijo a agregar
+     */
+    public void addChild(MenuItem child) {
+        child.setParent(this);
+        this.children.add(child);
+    }
+
+    /**
+     * Devuelve la lista de relaciones RoleMenu asociadas a este item.
+     *
+     * @return lista de asociaciones role-menu
+     */
+    public List<RoleMenu> getRoleMenus() {
+        return roleMenus;
+    }
+
+    /**
+     * Anade una relacion RoleMenu a este item.
+     *
+     * @param rm objeto que representa la asociacion con un rol
+     */
+    public void addRoleMenu(RoleMenu rm) {
+        this.roleMenus.add(rm);
     }
 }
