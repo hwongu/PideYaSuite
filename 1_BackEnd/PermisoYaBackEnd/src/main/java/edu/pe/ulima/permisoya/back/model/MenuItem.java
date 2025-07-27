@@ -126,15 +126,7 @@ public class MenuItem {
         return children;
     }
 
-    /**
-     * Anade un item hijo, configurando automaticamente su referencia padre.
-     *
-     * @param child elemento hijo a agregar
-     */
-    public void addChild(MenuItem child) {
-        child.setParent(this);
-        this.children.add(child);
-    }
+    
 
     /**
      * Devuelve la lista de relaciones RoleMenu asociadas a este item.
