@@ -175,6 +175,7 @@ public class FrmIniciarSesion extends javax.swing.JFrame {
         try {
             Usuario usuario = usuarioService.autenticarUsuario(txtUsuario.getText(), txtClave.getText());
             if(usuario!=null){
+                this.dispose();
                 FrmPrincipal principal = new FrmPrincipal();
                 principal.setVisible(true);
                 FrmPrincipal.usuarioInicioSesion = usuario;
