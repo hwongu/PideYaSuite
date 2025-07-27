@@ -309,6 +309,9 @@
                           <Dimension value="[76, 23]"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRefrescarPedidosActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>

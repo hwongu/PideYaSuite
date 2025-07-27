@@ -433,6 +433,11 @@ public class FrmCompra extends javax.swing.JInternalFrame {
         btnRefrescarPedidos.setToolTipText("Refrescar Pedidos");
         btnRefrescarPedidos.setMaximumSize(new java.awt.Dimension(76, 23));
         btnRefrescarPedidos.setMinimumSize(new java.awt.Dimension(76, 23));
+        btnRefrescarPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefrescarPedidosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -499,6 +504,11 @@ public class FrmCompra extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_btnRealizarPagoActionPerformed
+
+    private void btnRefrescarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefrescarPedidosActionPerformed
+        // TODO add your handling code here:
+        inicializarTablaPedidosSinCompra();
+    }//GEN-LAST:event_btnRefrescarPedidosActionPerformed
 
     public void enviarMensajeAdvertencia(String mensaje) {
         JOptionPane.showMessageDialog(
