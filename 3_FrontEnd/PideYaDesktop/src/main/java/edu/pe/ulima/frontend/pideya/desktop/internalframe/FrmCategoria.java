@@ -305,7 +305,7 @@ public class FrmCategoria extends javax.swing.JInternalFrame {
                 }
                 inicializarTablaCategoria(null);
             } else {
-                enviarMensajeAdvertencia("El campo nombre esta vacio");
+                enviarMensajeAdvertencia("El campo nombre está vacío");
                 txtNombre.requestFocus();
             }
         } catch (Exception ex) {
