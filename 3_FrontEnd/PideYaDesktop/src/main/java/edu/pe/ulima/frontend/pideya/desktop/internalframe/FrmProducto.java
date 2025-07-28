@@ -342,7 +342,7 @@ public class FrmProducto extends javax.swing.JInternalFrame {
                     producto = productoService.agregarProducto(producto);
                     if (producto != null) {
                         txtCodigo.setText(String.valueOf(producto.getIdProducto()));
-                        enviarMensajeExito("Se registró la Categoría con ID: " + producto.getIdProducto());
+                        enviarMensajeExito("Se registró el Producto con ID: " + producto.getIdProducto());
                     }
                 } else {
                     //Actualizar
@@ -350,7 +350,7 @@ public class FrmProducto extends javax.swing.JInternalFrame {
                     producto = productoService.editarInformacionProducto(producto);
                     if (producto != null) {
                         txtCodigo.setText(String.valueOf(producto.getIdProducto()));
-                        enviarMensajeExito("Se actualizó la Categoría con ID: " + producto.getIdProducto());
+                        enviarMensajeExito("Se actualizó el Producto con ID: " + producto.getIdProducto());
                     }
                 }
                 inicializarTablaProducto(null);
