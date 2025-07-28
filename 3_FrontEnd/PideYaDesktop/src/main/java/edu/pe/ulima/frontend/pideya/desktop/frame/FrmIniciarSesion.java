@@ -37,8 +37,8 @@ public class FrmIniciarSesion extends javax.swing.JFrame {
         } else {
             System.err.println("¡Recurso no encontrado: miIcono.png!");
         }
-        lblTituloFormulario.setText("PIDE YA - Iniciar Sesión");
-        setTitle("PIDE YA - Iniciar Sesión");
+        lblTituloFormulario.setText("PideYa - Iniciar Sesión");
+        setTitle("PideYa - Iniciar Sesión");
         getRootPane().setDefaultButton(btnIniciarSesion);
         InputMap  im = getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         ActionMap am = getRootPane().getActionMap();
