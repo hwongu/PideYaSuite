@@ -975,7 +975,7 @@ public class FrmPedido extends javax.swing.JInternalFrame {
 
         // 3) Monto total
         txtMontoTotal.setText(String.format("%.2f", pedido.getMontoTotal()));
-
+        btnGuardar.setEnabled(false);
         // 4) Cambiar a pestaña Operación
         jtbPrincipal.setSelectedIndex(1);
     }
