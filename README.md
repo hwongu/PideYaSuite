@@ -89,7 +89,7 @@ Está permitido su uso únicamente con fines **educativos y académicos** en el 
 
 ## ⚠️ Nota Académica
 
-Este repositorio es un recurso de ejemplo diseñado específicamente para prácticas de Ingeniería de Software. Su enfoque principal es la claridad pedagógica, por lo que puede omitir ciertas optimizaciones de escalabilidad o medidas de ciberseguridad estrictas requeridas en un entorno empresarial real.
+Este repositorio es un recurso de ejemplo diseñado específicamente para prácticas en clases. No está optimizado para ambientes reales ni cumple con todas las medidas de seguridad y escalabilidad requeridas en aplicaciones comerciales.
 
 ---
 
